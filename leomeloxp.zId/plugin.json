@@ -1,0 +1,73 @@
+{
+  "noteplan.minAppVersion": " 3.9.0",
+  "macOS.minVersion": "10.13.0",
+  "plugin.id": "leomeloxp.zId",
+  "plugin.name": "🆔 Zettelkasten Identifier Generator",
+  "plugin.description": "Generates a short time based ID for use with Zettelkasten notes.",
+  "plugin.icon": "🆔",
+  "plugin.author": "Leonardo Melo",
+  "plugin.version": "1.0.0",
+  "plugin.requiredFiles": [],
+  "plugin.script": "script.js",
+  "plugin.isRemote": "false",
+  "plugin.commands": [
+    {
+      "name": "Date as zID",
+      "alias": ["dateAsZId", "dzid"],
+      "description": "Generates a Zettelkasten ID from a Date.",
+      "jsFunction": "dateAsZId",
+      "arguments": []
+    },
+    {
+      "name": "ISO Date as zID",
+      "alias": ["isoDateAsZId", "isozid", "idzid", "dtzid"],
+      "description": "Generates a Zettelkasten ID from an ISO Date.",
+      "jsFunction": "isoDateAsZId",
+      "arguments": []
+    },
+    {
+      "name": "Generate zID",
+      "alias": ["uzid", "zid"],
+      "description": "Generates a Zettelkasten ID using the current date and time (to the second).",
+      "jsFunction": "unixTimestampAsZId",
+      "arguments": []
+    },
+    {
+      "name": "ZID to Date",
+      "alias": ["zid2d", "zid2date"],
+      "description": "Returns the YYYY-MM-DD date string from a supplied zID.",
+      "jsFunction": "zIdToISODateTime"
+    }
+  ],
+  "plugin.settings": [
+    {
+      "key": "radix",
+      "title": "ZID Radix (Base)",
+      "description": "Set the radix (base) to be used when generating number/date based Zettelkasten IDs.\n36 is the default, and is the maximum supported, the lower the base the longer the resulting ID.\n\nNOTE: Changing this setting can result in incorrect conversions of existing zIDs back to a date value.",
+      "type": "string",
+      "choices": [
+        "36",
+        "16",
+        "10",
+        "8"
+      ],
+      "default": "36",
+      "required": true
+    },
+    {
+      "key": "_logLevel",
+      "title": "Log Level",
+      "description": "Set how much output will be displayed for this plugin in the NotePlan > Help > Plugin Console. DEBUG is the most verbose; NONE is the least (silent).",
+      "type": "string",
+      "choices": [
+        "DEBUG",
+        "INFO",
+        "WARN",
+        "ERROR",
+        "none"
+      ],
+      "default": "INFO",
+      "required": true
+    }
+  ]
+}
